@@ -18,7 +18,7 @@ class CaptchaTests : StringSpec({
         )
 
         forAll(table) { captcha, expectedResult ->
-            sumOfSimilar(captcha) shouldBe expectedResult
+            sumOfSimilar(captcha.toBigInteger()) shouldBe expectedResult
         }
     }
 })
