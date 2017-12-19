@@ -23,5 +23,5 @@ fun findLayer(number: Int): Int =
         truncate(0.5 * sqrt((number.toDouble() - 1))).toInt()
 
 fun main(args: Array<String>) {
-    println(spiralMemory(12))
+    println(spiralMemory(347991))
 }
