@@ -20,7 +20,6 @@ fun memoryReallocation(numbers: MutableList<Int>): Int {
         numbers[index] = 0
         distributeNumbers(max!!, index, numbers)
         steps++
-
     }
 }
 
