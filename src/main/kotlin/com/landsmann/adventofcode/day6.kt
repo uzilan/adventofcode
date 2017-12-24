@@ -2,24 +2,29 @@ package com.landsmann.adventofcode
 
 // http://adventofcode.com/2017/day/6
 
+private val memoryLane = mutableListOf<String>()
+
 fun memoryReallocation(numbers: MutableList<Int>): Int {
-    val visitedNumbers = mutableListOf<Int>()
-    var steps = 1
+    var steps = 0
 
     while (true) {
-        val max = numbers.max()
-        val index = numbers.indexOf(max)
-        if (visitedNumbers.contains(index)) {
+        val joinedNumbers = numbers.joinToString("#")
+        if (memoryLane.contains(joinedNumbers)) {
             return steps
         }
+        memoryLane.add(joinedNumbers)
+
+        val max = numbers.max()
+        val index = numbers.indexOf(max)
+
         numbers[index] = 0
         distributeNumbers(max!!, index, numbers)
         steps++
-        visitedNumbers.add(index)
+
     }
 }
 
-fun distributeNumbers(count: Int, index: Int, numbers: MutableList<Int>) {
+private fun distributeNumbers(count: Int, index: Int, numbers: MutableList<Int>) {
     if (count == 0) {
         return
     }
