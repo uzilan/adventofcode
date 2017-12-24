@@ -3,7 +3,7 @@ import com.landsmann.adventofcode.memoryReallocation
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.StringSpec
 
-class MemoryReallocationTests : StringSpec({
+class Day6Tests : StringSpec({
 
     "Memory reallocation should result in correct value" {
 

@@ -1,4 +1,4 @@
-import com.landsmann.adventofcode.sumOfSimilar
+import com.landsmann.adventofcode.inverseCaptcha
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.properties.forAll
 import io.kotlintest.properties.headers
@@ -6,9 +6,9 @@ import io.kotlintest.properties.row
 import io.kotlintest.properties.table
 import io.kotlintest.specs.StringSpec
 
-class CaptchaTests : StringSpec({
+class Day1Tests : StringSpec({
 
-    "Captcha should result in correct value" {
+    "Inverse captcha should result in correct value" {
         val table = table(
                 headers("captcha", "expected result"),
                 row(1122, 3),
@@ -18,7 +18,7 @@ class CaptchaTests : StringSpec({
         )
 
         forAll(table) { captcha, expectedResult ->
-            sumOfSimilar(captcha.toBigInteger()) shouldBe expectedResult
+            inverseCaptcha(captcha.toBigInteger()) shouldBe expectedResult
         }
     }
 })

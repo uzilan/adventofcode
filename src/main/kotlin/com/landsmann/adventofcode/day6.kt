@@ -1,16 +1,18 @@
 package com.landsmann.adventofcode
 
+// http://adventofcode.com/2017/day/6
+
 fun memoryReallocation(numbers: MutableList<Int>): Int {
-    var visitedNumbers = mutableListOf<Int>()
+    val visitedNumbers = mutableListOf<Int>()
     var steps = 1
 
     while (true) {
-        var max = numbers.max()
-        var index = numbers.indexOf(max)
+        val max = numbers.max()
+        val index = numbers.indexOf(max)
         if (visitedNumbers.contains(index)) {
             return steps
         }
-        numbers[index!!] = 0
+        numbers[index] = 0
         distributeNumbers(max!!, index, numbers)
         steps++
         visitedNumbers.add(index)

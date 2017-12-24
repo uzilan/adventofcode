@@ -2,7 +2,7 @@ import com.landsmann.adventofcode.highEntropyPassphrases
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.StringSpec
 
-class HighEntropyPassphrasesTests : StringSpec({
+class Day4Tests : StringSpec({
 
     "High entropy passphrases should result in correct value" {
 

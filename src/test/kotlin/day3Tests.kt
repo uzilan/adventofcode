@@ -1,7 +1,4 @@
-import com.landsmann.adventofcode.checksum
-import com.landsmann.adventofcode.parseMatrix
 import com.landsmann.adventofcode.spiralMemory
-import com.landsmann.adventofcode.sumOfSimilar
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.properties.forAll
 import io.kotlintest.properties.headers
@@ -9,7 +6,7 @@ import io.kotlintest.properties.row
 import io.kotlintest.properties.table
 import io.kotlintest.specs.StringSpec
 
-class SpiralMemoryTests : StringSpec({
+class Day3Tests : StringSpec({
 
     "Distance to spiral middle should result in correct value" {
         val table = table(

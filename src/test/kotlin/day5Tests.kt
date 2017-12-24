@@ -3,7 +3,7 @@ import com.landsmann.adventofcode.mazeOfTwistyTrampolines
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.StringSpec
 
-class MazeOfTwistyTrampolines : StringSpec({
+class Day5Tests : StringSpec({
 
     "Maze of twisty trampolines should result in correct value" {
 

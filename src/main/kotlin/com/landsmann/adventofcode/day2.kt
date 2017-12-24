@@ -2,7 +2,7 @@ package com.landsmann.adventofcode
 
 // http://adventofcode.com/2017/day/2
 
-fun checksum(matrix: List<List<Int>>): Int {
+fun corruptionChecksum(matrix: List<List<Int>>): Int {
     return matrix.sumBy { findDifference(it) }
 }
 
@@ -41,5 +41,5 @@ fun main(args: Array<String>) {
 """
 
     val matrix = parseMatrix(input)
-    println(checksum(matrix))
+    println(corruptionChecksum(matrix))
 }
