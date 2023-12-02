@@ -19,10 +19,7 @@ object Day1 {
 
     private val nums = listOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
 
-    private fun parse(line: String): Int {
-        val s = "${findFirst(line)}${findLast(line)}"
-        return s.toInt()
-    }
+    private fun parse(line: String): Int = "${findFirst(line)}${findLast(line)}".toInt()
 
     private fun findFirst(line: String): Int {
         if (line.first().isDigit()) return line.first().digitToInt()
