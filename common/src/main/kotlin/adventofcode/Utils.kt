@@ -27,7 +27,7 @@ object Utils {
         val (result, duration) = measureTimedValue {
             block()
         }
-        println("$message: ($duration)")
+        println("$message ($duration)")
         return result
     }
 
