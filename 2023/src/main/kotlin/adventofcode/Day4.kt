@@ -9,8 +9,7 @@ import kotlin.time.ExperimentalTime
 object Day4 {
 
     fun part1(rows: List<Row>): Int =
-        rows.map { row -> row.got intersect row.win.toSet() }
-            .map { it.size }
+        rows.map { row -> (row.got intersect row.win.toSet()).size }
             .filter { it != 0 }
             .sumOf { 2.0.pow(it - 1.0) }
             .toInt()
@@ -19,11 +18,11 @@ object Day4 {
         val cards = rows
             .map { row -> (row.got intersect row.win.toSet()).size }
 
-        val mults = MutableList<Int>(size = cards.size) { 1 }
+        val mults = MutableList(size = cards.size) { 1 }
 
         cards.forEachIndexed { index, wins ->
             (1..wins).forEach {
-                mults[index + it] += 1 * mults[index]
+                mults[index + it] += mults[index]
             }
         }
 
