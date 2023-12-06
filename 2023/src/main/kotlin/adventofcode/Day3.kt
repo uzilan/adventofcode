@@ -13,7 +13,7 @@ object Day3 {
         val numbers = lines.map { findUsingRegex(numberRegex, it) }
         val symbols = lines.map { findUsingRegex(symbolRegex, it) }
 
-        return numbers.mapIndexed { rowIndex, nums ->
+        val mapIndexed = numbers.mapIndexed { rowIndex, nums ->
             nums.filter { num ->
                 val above = if (rowIndex > 0) symbolsCloseByOnRow(symbols[rowIndex - 1], num) else false
                 val same = symbolsCloseByOnSameRow(symbols[rowIndex], num)
@@ -21,8 +21,14 @@ object Day3 {
                 above || same || below
             }
         }
+        val flatten = mapIndexed
             .flatten()
-            .sumOf { it.value.toInt() }
+
+        println(flatten.map { it.value }.joinToString("\n"))
+        return flatten
+            .sumOf {
+                it.value.toInt()
+            }
     }
 
     private fun symbolsCloseByOnSameRow(symbols: List<Thing>, number: Thing): Boolean {
@@ -57,9 +63,10 @@ object Day3 {
     @JvmStatic
     @OptIn(ExperimentalTime::class)
     fun main(args: Array<String>) {
-        val input = prep("reading") { readLines("day3.txt") }
+        val input = prep("reading") { readLines("day3Marcus.txt") }
         printResult("part 1") { part1(input) }
 //        printResult("part 2") { part2(games) }
     }
 }
 
+//527369
