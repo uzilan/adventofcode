@@ -1,5 +1,6 @@
 package adventofcode
 
+import adventofcode.Utils.lcm
 import adventofcode.Utils.prep
 import adventofcode.Utils.printResult
 import adventofcode.Utils.readLines
@@ -7,35 +8,42 @@ import kotlin.time.ExperimentalTime
 
 object Day8 {
 
-    fun part1(directions: String, map: HashMap<String, LR>): Int {
+    fun part1(directions: String, map: HashMap<String, LR>): Long = countJumps(
+        directions = directions,
+        map = map,
+        start = "AAA",
+        isAtEnd = { it == "ZZZ" },
+    )
 
-        var steps = 0
-        var index = 0
-        var curr = "AAA"
-
-        while (curr != "ZZZ") {
-            val line = map[curr]
-            if (index == directions.length) index = 0
-            val nextDirection = directions[index]
-            curr = if (nextDirection == 'L') line!!.left else line!!.right
-            steps++
-            index++
+    fun part2(directions: String, map: HashMap<String, LR>): Long {
+        val startingPoints = map.keys.filter { it.endsWith('A') }
+        val jumpCounts = startingPoints.map { startingPoint ->
+            countJumps(
+                directions = directions,
+                map = map,
+                start = startingPoint,
+                isAtEnd = { it.endsWith('Z') },
+            )
         }
 
-        return steps
+        return lcm(jumpCounts)
     }
 
-    fun part2(directions: String, map: HashMap<String, LR>): Int {
-
-        var steps = 0
+    private fun countJumps(
+        directions: String,
+        map: HashMap<String, LR>,
+        start: String,
+        isAtEnd: (String) -> Boolean,
+    ): Long {
+        var steps = 0L
         var index = 0
-        var currs = map.keys.filter { it.endsWith('A') }
+        var curr = start
 
-        while (!currs.all { it.endsWith('Z') }) {
-            val lines = currs.map { map[it] }
+        while (!isAtEnd(curr)) {
+            val line = map[curr]!!
             if (index == directions.length) index = 0
             val nextDirection = directions[index]
-            currs = lines.map { line -> if (nextDirection == 'L') line!!.left else line!!.right }
+            curr = if (nextDirection == 'L') line.left else line.right
             steps++
             index++
         }
@@ -56,7 +64,6 @@ object Day8 {
 
         return directions to HashMap(map)
     }
-
 
     @JvmStatic
     @OptIn(ExperimentalTime::class)

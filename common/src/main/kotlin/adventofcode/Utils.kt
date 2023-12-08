@@ -38,4 +38,9 @@ object Utils {
         }
         println("$message: $result ($duration)")
     }
+
+    fun gcd(x: Long, y: Long): Long = if (y == 0L) x else gcd(y, x % y)
+
+    fun lcm(numbers: List<Long>): Long = numbers.fold(1) { x, y -> x * (y / gcd(x, y)) }
+
 }
