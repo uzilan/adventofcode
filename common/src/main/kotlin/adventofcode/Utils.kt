@@ -22,6 +22,17 @@ object Utils {
         return readLines(fileName).map { it.toInt() }
     }
 
+    fun readAndSplitLineItems(fileName: String, delimiter: String = " "): List<List<String>> {
+        return readLines(fileName)
+            .map { line -> line.split(delimiter) }
+
+    }
+
+    fun readAndSplitLineItemsAsInts(fileName: String, delimiter: String = " "): List<List<Int>> {
+        return readAndSplitLineItems(fileName, delimiter)
+            .map { line -> line.map { it.toInt() } }
+    }
+
     @ExperimentalTime
     fun <T> prep(message: String, block: () -> T): T {
         val (result, duration) = measureTimedValue {
