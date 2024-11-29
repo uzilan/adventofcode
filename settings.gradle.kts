@@ -1,3 +1,3 @@
 rootProject.name = "adventofcode"
 
-include("common", "2023")
+include("common", "2024")

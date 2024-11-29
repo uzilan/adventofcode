@@ -1,0 +1,8 @@
+[libraries]
+kotest = { module = "io.kotest:kotest-runner-junit5-jvm", version = "5.9.1" }
+kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom" }
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8" }
+
+[plugins]
+kotlin-jvm = "org.jetbrains.kotlin.jvm:2.1.0"
+
