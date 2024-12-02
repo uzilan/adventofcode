@@ -1,28 +1,31 @@
 package adventofcode
 
+import adventofcode.Utils.dropAt
 import adventofcode.Utils.prep
 import adventofcode.Utils.printResult
 import adventofcode.Utils.readAndSplitLineItemsAsInts
 import kotlin.math.abs
 import kotlin.time.ExperimentalTime
 
-object Day2 {
-    fun part1(reports: List<List<Int>>): Int = reports.filter(::safe).size
+typealias Report = List<Int>
+typealias Reports = List<Report>
 
-    fun part2(reports: List<List<Int>>): Int = reports.filter { report ->
-        safe(report) || drops(report).any { safe(it) }
+object Day2 {
+    fun part1(reports: Reports): Int = reports.filter(::isSafe).size
+
+    fun part2(reports: Reports): Int = reports.filter { report ->
+        isSafe(report) || reportsWithOneLevelRemoved(report).any { isSafe(it) }
     }.size
 
-    private fun drops(report: List<Int>): List<List<Int>> =
-        report.indices.map { report.subList(0, it) + report.subList(it + 1, report.size) }
+    private fun reportsWithOneLevelRemoved(report: Report): Reports = report.indices.map { report.dropAt(it) }
 
-    private fun safe(report: List<Int>): Boolean = (increasing(report) || decreasing(report)) && safeDiff(report)
+    private fun isSafe(report: Report): Boolean = (isIncreasing(report) || isDecreasing(report)) && isSafeDiff(report)
 
-    private fun increasing(report: List<Int>) = report.sorted().distinct() == report
+    private fun isIncreasing(report: Report) = report.sorted().distinct() == report
 
-    private fun decreasing(report: List<Int>) = report.sorted().distinct().reversed() == report
+    private fun isDecreasing(report: Report) = report.sorted().distinct().reversed() == report
 
-    private fun safeDiff(report: List<Int>) = report.zipWithNext()
+    private fun isSafeDiff(report: Report) = report.zipWithNext()
         .all { abs(it.second - it.first) in 1..3 }
 
     @JvmStatic

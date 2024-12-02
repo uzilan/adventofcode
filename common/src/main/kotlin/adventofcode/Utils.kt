@@ -54,4 +54,5 @@ object Utils {
 
     fun lcm(numbers: List<Long>): Long = numbers.fold(1) { x, y -> x * (y / gcd(x, y)) }
 
+    fun <T> List<T>.dropAt(i: Int): List<T> = subList(0, i) + subList(i + 1, size)
 }
